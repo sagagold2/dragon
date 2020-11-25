@@ -7,9 +7,10 @@ public class Enemy : MonoBehaviour
 
     Rigidbody rigid;
 
-    public GameObject enemtbulletPrefab;
-    float shootDelay = 1f;
+    public GameObject enemybulletPrefab;
+    float shootDelay = 4f;
     float shootTimer = 0;
+    public float bulletSpeed;
 
     void Awake()
     {
@@ -39,11 +40,18 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.tag == "Border")
             Destroy(gameObject);
+
         else if (other.gameObject.tag == "PlayerBullet")
         {
-            FireCollisionForwardScript bullet = other.gameObject.GetComponent<FireCollisionForwardScript>();
 
+            Bullet bullet = other.gameObject.GetComponent<Bullet>();
             OnHit(bullet.dmg);
+
+            Destroy(other.gameObject);
+        }
+        else if (other.gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -51,10 +59,13 @@ public class Enemy : MonoBehaviour
     {
         if (shootTimer > shootDelay)
         {
-            GameObject bullet = Instantiate(enemtbulletPrefab, transform.position, transform.rotation);
+            GameObject enemybullet = Instantiate(enemybulletPrefab, transform.position, transform.rotation);
             shootTimer = 0;
+            Debug.Log("적 총 발사");
         }
         shootTimer += Time.deltaTime;
+
+
     }
 
 }

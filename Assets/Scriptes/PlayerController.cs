@@ -50,21 +50,21 @@ public class PlayerController : MonoBehaviour
             Rigid.velocity = (vec3 * MoveSpeed);
             // print(Controller.velocity);
             //화면 안에서 이동
-            if (transform.position.x < -7f) //좌
+            if (transform.position.x < -40f) //좌
             {
-                transform.position = new Vector3(-7f, transform.position.y, transform.position.z);
+                transform.position = new Vector3(-40f, transform.position.y, transform.position.z);
             }
-            if (transform.position.x > 7f) //우
+            if (transform.position.x > 40f) //우
             {
-                transform.position = new Vector3(7f, transform.position.y, transform.position.z);
+                transform.position = new Vector3(40f, transform.position.y, transform.position.z);
             }
-            if (transform.position.z < -12f) //하
+            if (transform.position.z < -40f) //하
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, -12f);
+                transform.position = new Vector3(transform.position.x, transform.position.y, -40f);
             }
-            if (transform.position.z > 18f) //상
+            if (transform.position.z > 120f) //상
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, 18f);
+                transform.position = new Vector3(transform.position.x, transform.position.y, 120f);
             }
             Debug.Log("joystick  Active");
         }
@@ -173,12 +173,25 @@ public class PlayerController : MonoBehaviour
         if (shootTimer > shootDelay)
         {
             GameObject bullet = Instantiate(prefabFireBall, transform.position, transform.rotation);
+
+
             shootTimer = 0;
         }
         shootTimer += Time.deltaTime;
 
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "EnemyBullet")
+        {
+            Destroy(gameObject);
+        }
+        else if (other.gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
+        
 
 
-   
+    }
 }
