@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
     public int health;
 
     Rigidbody rigid;
+ 
 
     public GameObject enemybulletPrefab;
     float shootDelay = 4f;
@@ -14,7 +15,7 @@ public class Enemy : MonoBehaviour
 
     void Awake()
     {
-
+        
         rigid = GetComponent<Rigidbody>();
         rigid.velocity = Vector3.back * speed;
     }
@@ -67,5 +68,6 @@ public class Enemy : MonoBehaviour
 
 
     }
+
 
 }

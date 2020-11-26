@@ -27,13 +27,13 @@ public class GameManager : MonoBehaviour
 
         //Stage(0);
 
-        mainCamera.MoveCamera(0);
+        //    mainCamera.MoveCamera(0);
 
 
-        canvaJoystick.SetActive(true);
-        canvaJoystick1.SetActive(false);
-        canvaJoystick2.SetActive(false);
-        canvaJoystick3.SetActive(false);
+        //    canvaJoystick.SetActive(true);
+        //    canvaJoystick1.SetActive(false);
+        //    canvaJoystick2.SetActive(false);
+        //    canvaJoystick3.SetActive(false);
     }
 
     // Update is called once per frame
@@ -42,13 +42,40 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void Stage(int Index)
+   public  void Stage1(int Index)
     {
         mainCamera.MoveCamera(0);
         canvaJoystick.SetActive(true);
         canvaJoystick1.SetActive(false);
         canvaJoystick2.SetActive(false);
         canvaJoystick3.SetActive(false);
+
+    }
+    public void Stage2(int Index)
+    {
+        mainCamera.MoveCamera(1);
+        canvaJoystick.SetActive(false);
+        canvaJoystick1.SetActive(true);
+        canvaJoystick2.SetActive(false);
+        canvaJoystick3.SetActive(false);
+
+    }
+    public void Stage3(int Index)
+    {
+        mainCamera.MoveCamera(2);
+        canvaJoystick.SetActive(false);
+        canvaJoystick1.SetActive(false);
+        canvaJoystick2.SetActive(true);
+        canvaJoystick3.SetActive(false);
+
+    }
+    public void Stage4(int Index)
+    {
+        mainCamera.MoveCamera(3);
+        canvaJoystick.SetActive(false);
+        canvaJoystick1.SetActive(false);
+        canvaJoystick2.SetActive(false);
+        canvaJoystick3.SetActive(true);
 
     }
 }
