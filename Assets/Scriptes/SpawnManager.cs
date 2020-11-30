@@ -28,13 +28,7 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine("SpawnEnemy");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-
-        // SpawnEnemy();
-    }
+ 
 
     private IEnumerator SpawnEnemy()
     {
@@ -71,6 +65,8 @@ public class SpawnManager : MonoBehaviour
         textBossWarring.SetActive(false); //보스 등잘 텍스트 비활성화
 
         bossEnemyPrefabs.SetActive(true); //보스오브젝트 활성화
+
+        bossEnemyPrefabs.GetComponent<Boss>().ChangeState(BossState.MoveToAppearPoint);
     }
 
 

@@ -1,20 +1,23 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public enum BossState { MoveToAppearpoin = 0,}
+public enum BossState { MoveToAppearPoint = 0, Phase01, }
 
 public class Boss : MonoBehaviour
 {
     [SerializeField]
-    private float bossAppearPoint = 2.5f;
-    private BossState bossState = BossState.MoveToAppearpoin;
-    private Enemy EnemyMove;
+    private float bossAppearPoint = 100f;
+    private BossState bossState = BossState.MoveToAppearPoint;
+
+    private Movement movement;
+    private BossAttack bossAttack;
 
 
     private void Awake()
     {
-        EnemyMove = GetComponent<Enemy>();
+        movement = GetComponent<Movement>();
+        bossAttack = GetComponent<BossAttack>();
+
     }
     public void ChangeState(BossState newState)
     {
@@ -26,9 +29,36 @@ public class Boss : MonoBehaviour
 
     }
 
-    //private IEnumerator MoveToAppearPoint()  유트브 '고박사의 유니티 노트' 비행 슈팅 게임 #04 7:50 초 까지 본거임
-    //{
-    //    EnemyMove.
-    //}
+    private IEnumerator MoveToAppearPoint()
+    {
+        //이동방향 설정
+        movement.MoveTo(Vector3.back);
+
+
+        while (true)
+        {
+            if (transform.position.z <= bossAppearPoint)
+            {
+                //이동 방향을 (0,0,0) 으로 설정해 멈추도록 한다
+                movement.MoveTo(Vector3.zero);
+
+                //Phase01 상태로 변경
+                ChangeState(BossState.Phase01);
+
+            }
+            yield return null;
+        }
+    }
+
+    private IEnumerator Phase01()
+    {
+        // 원 형태의 방사 공격 시작
+        bossAttack.StartFiring(AttackType.CircleFire);
+
+        while (true)
+        {
+            yield return null;
+        }
+    }
 
 }

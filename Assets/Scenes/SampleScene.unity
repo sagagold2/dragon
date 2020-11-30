@@ -2193,6 +2193,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1266770891}
   m_CullTransparentMesh: 0
+--- !u!1 &1291783998 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6352084861178796430, guid: d2d120fd3aca15f4ab84e297c215395f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1329571277}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1291784006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291783998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386468fed3e16f1479488a5c6b8b971d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossBulletPrefab: {fileID: 137794, guid: 2b26cef08438ab1449e311bd419fe8d1, type: 3}
 --- !u!1 &1306523988
 GameObject:
   m_ObjectHideFlags: 0
@@ -2274,20 +2293,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5357740598664900679, guid: d2d120fd3aca15f4ab84e297c215395f,
+    - target: {fileID: 3856399063883379252, guid: d2d120fd3aca15f4ab84e297c215395f,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3
+      propertyPath: moveDirection.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3856399063883379252, guid: d2d120fd3aca15f4ab84e297c215395f,
+        type: 3}
+      propertyPath: moveDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3856399063883379252, guid: d2d120fd3aca15f4ab84e297c215395f,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5357740598664900679, guid: d2d120fd3aca15f4ab84e297c215395f,
         type: 3}
-      propertyPath: m_LocalPosition.y
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5357740598664900679, guid: d2d120fd3aca15f4ab84e297c215395f,
         type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5357740598664900679, guid: d2d120fd3aca15f4ab84e297c215395f,
+        type: 3}
       propertyPath: m_LocalPosition.z
-      value: 183.1
+      value: 174
       objectReference: {fileID: 0}
     - target: {fileID: 5357740598664900679, guid: d2d120fd3aca15f4ab84e297c215395f,
         type: 3}
@@ -2433,12 +2467,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 195815808310251541, guid: 65b8a28eebe598d489d7b6baf49e7364, type: 3}
-  bossEnemyPrefabs: {fileID: 0}
+  bossEnemyPrefabs: {fileID: 1291783998}
   spawnRangeX: 40
   spawnPosZ: 150
   maxSpawnDelay: 3
   curSpawnDelay: 1
-  maxEnemyCount: 5
+  maxEnemyCount: 1
   textBossWarring: {fileID: 1084478655}
 --- !u!4 &1494556726
 Transform:
