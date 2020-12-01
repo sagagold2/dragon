@@ -11,13 +11,13 @@ GameObject:
   - component: {fileID: 421144}
   - component: {fileID: 3334310}
   - component: {fileID: 2372238}
-  - component: {fileID: 6605043689851398411}
   - component: {fileID: 8376373263683895251}
   - component: {fileID: -7061258697299202302}
   - component: {fileID: -9150633613778873671}
+  - component: {fileID: -4765707702926449264}
   m_Layer: 0
   m_Name: BossBullet
-  m_TagString: Untagged
+  m_TagString: BossBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,18 +83,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &6605043689851398411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 137794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b8ddca390b406749a0e8713febc73c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &8376373263683895251
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -138,3 +126,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 30
   moveDirection: {x: 0, y: 0, z: 0}
+--- !u!114 &-4765707702926449264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b8ddca390b406749a0e8713febc73c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

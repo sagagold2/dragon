@@ -26,9 +26,9 @@ public class Enemy : MonoBehaviour
 
     }
 
-    void OnHit(int dmg)
+    void OnHit(int damage)
     {
-        health -= dmg;
+        health -= damage;
 
 
         if (health <= 0)
@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
         {
 
             Bullet bullet = other.gameObject.GetComponent<Bullet>();
-            OnHit(bullet.dmg);
+            OnHit(bullet.damage);
 
             Destroy(other.gameObject);
         }

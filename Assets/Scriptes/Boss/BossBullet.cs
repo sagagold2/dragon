@@ -14,5 +14,9 @@ public class BossBullet : MonoBehaviour
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
+        else if(other.gameObject.tag == "Boss")
+        {
+
+        }
     }
 }

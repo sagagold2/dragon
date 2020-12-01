@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  health: 30
+  health: 5
   enemybulletPrefab: {fileID: 152490, guid: e3212aa3cff9c9745bd1a8f4def6ad1c, type: 3}
   bulletSpeed: 20
 --- !u!1971053207 &-3968900343527027007
