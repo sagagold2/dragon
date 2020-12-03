@@ -16,9 +16,9 @@ public class GameManager : MonoBehaviour
     public bool isGameover = true;
 
 
-    public PlayerController PlayerController;
+    public GameObject Player;
 
-    
+
 
     void Awake()
     {
@@ -32,11 +32,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        canvaJoystick.SetActive(true);
-
-        PlayerController = GameObject.Find("Player").GetComponent<PlayerController>();
-
-       
+        Player = GameObject.Find("Player");
     }
 
 
@@ -64,38 +60,28 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator BossClear()
     {
-
-
-
-        Debug.Log("보스클리어");
-        StopCoroutine(PlayerController.PlayerFire());
-        Debug.Log("보스클리어1");
+        Player.SetActive(false);
+        Player.SetActive(true);
+        // StopCoroutine(PlayerController.instance.PlayerFire());
 
 
 
         MainCamera.instance.MoveCamera(1);
+
         canvaJoystick.SetActive(false);
 
         yield return new WaitForSeconds(5f);
 
-        Debug.Log("보스클리어111");
         
+
         canvaJoystick1.SetActive(true);
         canvaJoystick2.SetActive(false);
         canvaJoystick3.SetActive(false);
 
         // yield return new WaitForSeconds(1);
 
-        // StartCoroutine(PlayerController.PlayerFire());
+         StartCoroutine(PlayerController.instance.PlayerFire());
         yield break;
-
-        //yield return new WaitForSeconds(3);
-
-
-
-
-
-        // yield return null;
     }
 
     //public void Stage2()

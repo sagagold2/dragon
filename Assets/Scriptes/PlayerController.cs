@@ -4,9 +4,9 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
     public Rigidbody Rigid;
-
-
 
     public Joystick VirtualJoystick;
     public Joystick1 VirtualJoystick1;
@@ -20,12 +20,19 @@ public class PlayerController : MonoBehaviour
 
     float shootDelay = 0.4f;
     float shootTimer = 0;
-    // Start is called before the first frame update
+
+     void Awake()
+    {
+       if(instance == null)
+        {
+            instance = this;
+        } 
+    }
     void Start()
     {
         Rigid.drag = Drag;
-
-        StartCoroutine("PlayerFire");
+        
+       StartCoroutine("PlayerFire");
     }
     void FixedUpdate()
     {
@@ -172,7 +179,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+   
     public IEnumerator PlayerFire()
     {
        
