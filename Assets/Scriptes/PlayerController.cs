@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,13 +24,16 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Rigid.drag = Drag;
+
+        StartCoroutine("PlayerFire");
     }
     void FixedUpdate()
     {
         CameraChangeforMove();
-        Fire();
+        // Fire();
+       
     }
-
+    
     // 플레이어 화면 전환에 따른 조이스틱 위치 변경/ 캐릭터 무브
     public void CameraChangeforMove() //화면이 돌아갈때마다 캔버스를 활성화 하는데 그떄 자식으로들어간 조이스틱들의 활성화에 따른 작동
     {
@@ -168,18 +173,38 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void Fire()
+    public IEnumerator PlayerFire()
     {
-        if (shootTimer > shootDelay)
+       
+        while (true)
         {
-            GameObject bullet = Instantiate(prefabFireBall, transform.position, transform.rotation);
+           
+            if (shootTimer > shootDelay)
+            {
+                GameObject bullet = Instantiate(prefabFireBall, transform.position, transform.rotation);
 
 
-            shootTimer = 0;
+                shootTimer = 0;
+            }
+            shootTimer += Time.deltaTime;
+            Debug.Log("1111");
+            yield return null;
         }
-        shootTimer += Time.deltaTime;
 
     }
+
+    //void Fire()
+    //{
+    //    if (shootTimer > shootDelay)
+    //    {
+    //        GameObject bullet = Instantiate(prefabFireBall, transform.position, transform.rotation);
+
+
+    //        shootTimer = 0;
+    //    }
+    //    shootTimer += Time.deltaTime;
+
+    //}
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "EnemyBullet")

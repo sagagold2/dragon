@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class MainCamera : MonoBehaviour
 {
-    
+    public static MainCamera instance;
 
     public Camera[] subCameras;
 
-    void Start()
+
+    public void Awake()
     {
-        
-        
-      
+        if (instance == null)
+        {
+            instance = this;
+        }
     }
+  
 
 
     public void MoveCamera(int index) //카메라를 목표지점으로 이동///index 는 서브카메라의 Element 숫자

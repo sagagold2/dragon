@@ -17,7 +17,7 @@ public class EnemyBullet : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.forward * Time.deltaTime * Speed);
-        Debug.Log("적 총알 날라간다");
+       // Debug.Log("적 총알 날라간다");
         if (transform.position.z < -50)
         {
             Destroy(gameObject);

@@ -700,7 +700,7 @@ MonoBehaviour:
   canvaJoystick1: {fileID: 404805620}
   canvaJoystick2: {fileID: 1563397172}
   canvaJoystick3: {fileID: 1504325778}
-  mainCamera: {fileID: 963194229}
+  isGameover: 1
 --- !u!4 &693657921
 Transform:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class BossHP : MonoBehaviour
 {
     [SerializeField]
     private float maxHP = 100; //최대 체력
-    private float currentHP; //현재 체력
+    public float currentHP; //현재 체력
     private Boss boss; //Boss 스크립트
 
     public float MaxHP => maxHP;

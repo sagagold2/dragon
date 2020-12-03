@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using System;
 
 public enum BossState { MoveToAppearPoint = 0, Phase01, Phase02, Phase03 }
 
@@ -135,6 +136,9 @@ public class Boss : MonoBehaviour
     {
         //보스 파괴 파티클 생성
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+
+        // StartCoroutine(GameManager.instance.BossClear()); <- 코루틴이라서 보스가 죽으면 서 코루틴이 끝김.
+        GameManager.instance.CallBossClear(); //일반함수를 불어와서 처리가 별도로 이루어짐
 
         //보스오브젝트 삭제
         Destroy(gameObject);

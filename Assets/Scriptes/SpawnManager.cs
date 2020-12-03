@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    public static SpawnManager instance;
 
     public GameObject[] enemyPrefabs;
 
@@ -22,6 +23,11 @@ public class SpawnManager : MonoBehaviour
 
     private void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }
+            
         textBossWarring.SetActive(false); //보스등장 텍스트 비활성화
         bossEnemyPrefabs.SetActive(false);
 
@@ -60,7 +66,7 @@ public class SpawnManager : MonoBehaviour
     {
         textBossWarring.SetActive(true); //보스 등장시 텍스트 활성화
 
-        yield return new WaitForSeconds(1.0f); //1초 대기 후 아래 텍스트 비활성화
+        yield return new WaitForSeconds(1.0f); //1초 대기 후 
 
         textBossWarring.SetActive(false); //보스 등잘 텍스트 비활성화
 
