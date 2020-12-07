@@ -11,6 +11,7 @@ public class BossBullet : MonoBehaviour
 
     void Start()
     {
+        bossHP = GameObject.Find("Boss").GetComponent<BossHP>();
         bossHP = GameObject.Find("Boss1").GetComponent<BossHP>();
     }
 
@@ -21,6 +22,8 @@ public class BossBullet : MonoBehaviour
             transform.position.x >= 60f ||
             transform.position.z <= -70f ||
             transform.position.z >= 160f ||
+            transform.position.y <= -80f ||
+            transform.position.y >= 80f ||
             bossHP.CurrentHP <= 0 )
         {
             Destroy(gameObject);

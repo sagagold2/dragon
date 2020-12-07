@@ -8,7 +8,7 @@ public class BossHP : MonoBehaviour
     private float maxHP = 100; //최대 체력
     public float currentHP; //현재 체력
     private Boss boss; //Boss 스크립트
-
+    private Boss1 boss1;
     public float MaxHP => maxHP;
     public float CurrentHP => currentHP;
 
@@ -18,7 +18,7 @@ public class BossHP : MonoBehaviour
         currentHP = maxHP; //시작시 현채체력과 최대체력을 동일하게 맞춤
 
         boss = GetComponent<Boss>();
-
+        boss1 = GetComponent<Boss1>();
     }
 
     public void TakeDamage(float damage)
@@ -30,6 +30,7 @@ public class BossHP : MonoBehaviour
         if(currentHP <= 0) //체력이 0과 같거나 0보다 낮으면 
         {
             boss.Ondie();
+            boss1.Ondie();
         }
 
     }

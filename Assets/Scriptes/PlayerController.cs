@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
 
     public Rigidbody Rigid;
+   
 
     public Joystick VirtualJoystick;
     public Joystick1 VirtualJoystick1;
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         CameraChangeforMove();
-        // Fire();
+        
        
     }
     
@@ -95,21 +96,21 @@ public class PlayerController : MonoBehaviour
             Rigid.velocity = (vec3 * MoveSpeed);
             // print(Controller.velocity);
             //화면 안에서 이동
-            if (transform.position.y < 1f) //하
+            if (transform.position.y < -12.2f) //하
             {
-                transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
+                transform.position = new Vector3(transform.position.x, -12.2f, transform.position.z);
             }
-            if (transform.position.y > 17f) //상
+            if (transform.position.y > 55.2f) //상
             {
-                transform.position = new Vector3(transform.position.x, 17f, transform.position.z);
+                transform.position = new Vector3(transform.position.x, 55.2f, transform.position.z);
             }
-            if (transform.position.z < -23f) //좌
+            if (transform.position.z < -67f) //좌(뒤쪽)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, -23f);
+                transform.position = new Vector3(transform.position.x, transform.position.y, -67f);
             }
-            if (transform.position.z > 27f) //우
+            if (transform.position.z > 73f) //우(앞쪽)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, 27f);
+                transform.position = new Vector3(transform.position.x, transform.position.y, 73f);
             }
             Debug.Log("joystick 1 Active");
         }
@@ -212,18 +213,22 @@ public class PlayerController : MonoBehaviour
     //    shootTimer += Time.deltaTime;
 
     //}
+
+        //플레이어 사망
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "EnemyBullet")
         {
             Destroy(gameObject);
+            GameManager.instance.GameOver();
         }
         else if (other.gameObject.tag == "Enemy")
         {
             Destroy(gameObject);
+            GameManager.instance.GameOver();
         }
-        
-
-
+ 
     }
+
+  
 }

@@ -2,15 +2,15 @@
 using UnityEngine;
 using System;
 
-public enum BossState { MoveToAppearPoint = 0, Phase01, Phase02, Phase03 }
+public enum BossState1 { MoveToAppearPoint = 0, Phase01, Phase02, Phase03 }
 
-public class Boss : MonoBehaviour
+public class Boss1 : MonoBehaviour
 {
     
 
     [SerializeField]
-    private float bossAppearPoint = 100f;
-    private BossState bossState = BossState.MoveToAppearPoint;
+    private float bossAppearPoint = 70f;
+    private BossState1 bossState1 = BossState1.MoveToAppearPoint;
     private Movement movement;
     private BossAttack bossAttack;
     private BossHP bossHP; //보스 체력 기준으로 Phase 가 바뀌기 떄문에 보스체력 변수 선언
@@ -26,13 +26,13 @@ public class Boss : MonoBehaviour
         bossHP = GetComponent<BossHP>();
 
     }
-    public void ChangeState(BossState newState)
+    public void ChangeState(BossState1 newState)
     {
-        StopCoroutine(bossState.ToString());
+        StopCoroutine(bossState1.ToString());
 
-        bossState = newState;
+        bossState1 = newState;
 
-        StartCoroutine(bossState.ToString());
+        StartCoroutine(bossState1.ToString());
 
     }
 
@@ -50,7 +50,7 @@ public class Boss : MonoBehaviour
                 movement.MoveTo(Vector3.zero);
 
                 //Phase01 상태로 변경
-                ChangeState(BossState.Phase01);
+                ChangeState(BossState1.Phase01);
 
             }
             yield return null;
@@ -68,14 +68,14 @@ public class Boss : MonoBehaviour
             {
                 bossAttack.StopFiring(AttackType.CircleFire); //원 방사형 공격 중지
 
-                ChangeState(BossState.Phase02); //보스 페이즈 2로 변경
+                ChangeState(BossState1.Phase02); //보스 페이즈 2로 변경
                 Debug.Log("Boss Hp 70% 이하");
             }
             yield return null;
         }
     }
 
-    private IEnumerator Phase02() //좌우 이동하면 단일발사
+    private IEnumerator Phase02() //상하 이동하면 단일발사
     {
         //플레이어 위치를 기준으로 단일 발사체 공격 시작
         bossAttack.StartFiring(AttackType.SingleFireToCenterPosition);
@@ -86,8 +86,8 @@ public class Boss : MonoBehaviour
         while (true)
         {
             //좌우 이동 중 양쪽 끝에 다달하게 되면 방향을 반대로 설정
-            if(transform.position.x <= -40f || 
-               transform.position.x >= 40f)
+            if(transform.position.y <= -10f || 
+               transform.position.y >= 50f)
             {
                 direction *= -1; //방향변수에 -1을곱해서 반대방향으로 이동
                 movement.MoveTo(direction);
@@ -100,7 +100,7 @@ public class Boss : MonoBehaviour
                 bossAttack.StopFiring(AttackType.SingleFireToCenterPosition);
 
                 //Phase03 으로 변경
-                ChangeState(BossState.Phase03);
+                ChangeState(BossState1.Phase03);
                 Debug.Log("Boss Hp 30% 이하");
             }
             yield return null;
@@ -115,7 +115,7 @@ public class Boss : MonoBehaviour
         bossAttack.StartFiring(AttackType.SingleFireToCenterPosition);
 
         //처음이동발향을 오른쪽으로 설정
-        Vector3 direction = Vector3.right; 
+        Vector3 direction = Vector3.down; 
         movement.MoveTo(direction);
 
         while (true)

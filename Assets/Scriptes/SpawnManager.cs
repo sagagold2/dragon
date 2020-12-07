@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -9,9 +10,13 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField]
     private GameObject bossEnemyPrefabs;
+    public GameObject bossEnemyPrefabs1;
 
-    public float spawnRangeX = 8; //스폰위치 좌우 조절
-    public float spawnPosZ = 150; //스폰 위치 상하조절
+    //1단게 적 생성 위치
+    private float spawnRangeX = 8; //스폰위치 좌우 조절
+    private float spawnPosZ = 150; //스폰 위치 상하조절
+    //2단계 적 생성 위치
+    private float spawnPosZ1 = 100; //스폰 위치 상하조절
 
     public float maxSpawnDelay;
     public float curSpawnDelay;
@@ -28,15 +33,16 @@ public class SpawnManager : MonoBehaviour
             instance = this;
         }
             
-        textBossWarring.SetActive(false); //보스등장 텍스트 비활성화
+       // textBossWarring.SetActive(false); //보스등장 텍스트 비활성화
         bossEnemyPrefabs.SetActive(false);
+        bossEnemyPrefabs1.SetActive(false);
 
         StartCoroutine("SpawnEnemy");
     }
 
  
 
-    private IEnumerator SpawnEnemy()
+    public IEnumerator SpawnEnemy()
     {
         int curEnemyCount = 0;
 
@@ -44,19 +50,38 @@ public class SpawnManager : MonoBehaviour
 
         while (true)
         {
-            Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 7.6f, spawnPosZ);
-            int randomEnemy = Random.Range(0, enemyPrefabs.Length);
-
-            Instantiate(enemyPrefabs[randomEnemy], spawnPos, enemyPrefabs[randomEnemy].transform.rotation);
-           
-
-            curEnemyCount++;
-
-            if(curEnemyCount == maxEnemyCount)
+            if (GameManager.instance.canvaJoystick.activeInHierarchy == true)
             {
-                StartCoroutine("SpawnBoss");
-                break;
+                Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 7.6f, spawnPosZ);
+                int randomEnemy = Random.Range(0, enemyPrefabs.Length);
+
+                Instantiate(enemyPrefabs[randomEnemy], spawnPos, enemyPrefabs[randomEnemy].transform.rotation);
+
+                curEnemyCount++;
+
+                if (curEnemyCount == maxEnemyCount)
+                {
+                   // StartCoroutine("SpawnBoss");  //1스테이지 스킵을 위해 막아둔거임
+                    break;
+                }
             }
+
+            if (GameManager.instance.canvaJoystick1.activeInHierarchy == true)
+            {
+                Vector3 spawnPos = new Vector3(0, Random.Range(-17, 60), spawnPosZ1);
+                int randomEnemy = Random.Range(0, enemyPrefabs.Length);
+
+                Instantiate(enemyPrefabs[randomEnemy], spawnPos, enemyPrefabs[randomEnemy].transform.rotation);
+
+                curEnemyCount++;
+
+                if (curEnemyCount == maxEnemyCount)
+                {
+                    StartCoroutine("SpawnBoss1");
+                    break;
+                }
+            }
+
 
             yield return new WaitForSeconds(curSpawnDelay);
         }
@@ -75,6 +100,18 @@ public class SpawnManager : MonoBehaviour
         bossEnemyPrefabs.GetComponent<Boss>().ChangeState(BossState.MoveToAppearPoint);
     }
 
+    private IEnumerator SpawnBoss1()
+    {
+        textBossWarring.SetActive(true); //보스 등장시 텍스트 활성화
+
+        yield return new WaitForSeconds(1.0f); //1초 대기 후 
+
+        textBossWarring.SetActive(false); //보스 등잘 텍스트 비활성화
+
+        bossEnemyPrefabs1.SetActive(true); //보스오브젝트 활성화
+
+        bossEnemyPrefabs1.GetComponent<Boss1>().ChangeState(BossState1.MoveToAppearPoint);
+    }
 
 
 
