@@ -98,19 +98,19 @@ public class PlayerController : MonoBehaviour
             //화면 안에서 이동
             if (transform.position.y < -12.2f) //하
             {
-                transform.position = new Vector3(transform.position.x, -12.2f, transform.position.z);
+                transform.position = new Vector3(transform.position.x, -37f, transform.position.z);
             }
             if (transform.position.y > 55.2f) //상
             {
-                transform.position = new Vector3(transform.position.x, 55.2f, transform.position.z);
+                transform.position = new Vector3(transform.position.x, 42f, transform.position.z);
             }
             if (transform.position.z < -67f) //좌(뒤쪽)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, -67f);
+                transform.position = new Vector3(transform.position.x, transform.position.y, -32f);
             }
             if (transform.position.z > 73f) //우(앞쪽)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, 73f);
+                transform.position = new Vector3(transform.position.x, transform.position.y, 130f);
             }
             Debug.Log("joystick 1 Active");
         }
@@ -219,13 +219,13 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "EnemyBullet")
         {
-            Destroy(gameObject);
-            GameManager.instance.GameOver();
+          //  Destroy(gameObject);
+          //  GameManager.instance.GameOver();
         }
         else if (other.gameObject.tag == "Enemy")
         {
-            Destroy(gameObject);
-            GameManager.instance.GameOver();
+           // Destroy(gameObject);
+           // GameManager.instance.GameOver();
         }
  
     }

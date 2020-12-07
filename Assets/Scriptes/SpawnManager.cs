@@ -52,7 +52,7 @@ public class SpawnManager : MonoBehaviour
         {
             if (GameManager.instance.canvaJoystick.activeInHierarchy == true)
             {
-                Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 7.6f, spawnPosZ);
+                Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 0, spawnPosZ);
                 int randomEnemy = Random.Range(0, enemyPrefabs.Length);
 
                 Instantiate(enemyPrefabs[randomEnemy], spawnPos, enemyPrefabs[randomEnemy].transform.rotation);
@@ -61,7 +61,7 @@ public class SpawnManager : MonoBehaviour
 
                 if (curEnemyCount == maxEnemyCount)
                 {
-                   // StartCoroutine("SpawnBoss");  //1스테이지 스킵을 위해 막아둔거임
+                    StartCoroutine("SpawnBoss");  //1스테이지 스킵을 위해 막아둔거임
                     break;
                 }
             }

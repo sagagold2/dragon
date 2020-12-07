@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Player = GameObject.Find("Player");
-        StartCoroutine("BossClear0");  //임시로 1스테이지 스킵
+       // StartCoroutine("BossClear0");  //임시로 1스테이지 스킵
     }
 
     void Update()
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     public void CallBossClear()
     {
-        //StartCoroutine("BossClear0");   //임시로 막아논거임
+        StartCoroutine("BossClear0");   //임시로 막아논거임
     }
 
     //1단계 보스 클리어시..
