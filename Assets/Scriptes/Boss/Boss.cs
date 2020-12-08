@@ -15,16 +15,17 @@ public class Boss : MonoBehaviour
     private BossAttack bossAttack;
     private BossHP bossHP; //보스 체력 기준으로 Phase 가 바뀌기 떄문에 보스체력 변수 선언
 
+    
     [SerializeField]
     private GameObject explosionPrefab; //보스 사망시 이펙트 프리팹(파티클시스템으로 한거)
-
+    public GameObject bossBullet;
 
     private void Awake()
     {
         movement = GetComponent<Movement>();
         bossAttack = GetComponent<BossAttack>();
         bossHP = GetComponent<BossHP>();
-
+       
     }
     public void ChangeState(BossState newState)
     {
@@ -145,6 +146,8 @@ public class Boss : MonoBehaviour
 
         // StartCoroutine(GameManager.instance.BossClear()); <- 코루틴이라서 보스가 죽으면 서(오브젝트가 사라지기때문에) 코루틴이 끝김.
         GameManager.instance.CallBossClear(); //일반함수를 불어와서 처리가 별도로 이루어짐
+
+        Destroy(bossBullet);
 
         //보스오브젝트 삭제
         Destroy(gameObject);

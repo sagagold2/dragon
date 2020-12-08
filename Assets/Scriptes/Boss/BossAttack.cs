@@ -8,8 +8,9 @@ public class BossAttack : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject bossBulletPrefab; //보스의 공격미사일 프리팹
+    public  GameObject bossBulletPrefab; //보스의 공격미사일 프리팹
 
+    GameObject clone;
     public void StartFiring(AttackType attackType)
     {
         StartCoroutine(attackType.ToString()); //atttackType 열거형의 이름과 같은 코루틴을 실행
@@ -20,7 +21,7 @@ public class BossAttack : MonoBehaviour
         StopCoroutine(attackType.ToString());  //atttackType 열거형의 이름과 같은 코루틴을 중지
     }
 
-    private IEnumerator CircleFire()
+    public IEnumerator CircleFire()
     {
         float attackRate = 1f;  //공격주기
         int count = 30;  //발사체 생성 개수
@@ -45,7 +46,7 @@ public class BossAttack : MonoBehaviour
                     clone.GetComponent<Movement>().MoveTo(new Vector3(x, 0, z));
                     // Debug.Log("보스패턴1");
                 }
-
+                
                 //발사체가 생성되는 시작 각도 설정을 위한 변수
                 weightAngle += 3;
             }

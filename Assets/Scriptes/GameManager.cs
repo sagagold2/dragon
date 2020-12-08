@@ -11,9 +11,12 @@ public class GameManager : MonoBehaviour
     public GameObject canvaJoystick2;
     public GameObject canvaJoystick3;
 
+    public GameObject panelGameClear;
+    public GameObject panelGameover;
+
     public bool isGameover = true;
     public bool isPause = false;
-    public GameObject panelGameover;
+    
 
     private GameObject Player;
 
@@ -76,12 +79,12 @@ public class GameManager : MonoBehaviour
         // StopCoroutine(PlayerController.instance.PlayerFire());
 
         MainCamera.instance.MoveCamera(1); //카메라 이동
-        PlayerController.instance.transform.position = Vector3.zero;
+        
 
         canvaJoystick.SetActive(false); //카메라(0) 번 화면의 캔버스(조이스틱) 비활성화
-
+        
         yield return new WaitForSeconds(5f); //5초대기
-
+        PlayerController.instance.transform.position = Vector3.zero;
         canvaJoystick1.SetActive(true); //카메라(1) 번 화면의 캔버스(조이스틱) 활성화
         canvaJoystick2.SetActive(false);
         canvaJoystick3.SetActive(false);
@@ -109,13 +112,13 @@ public class GameManager : MonoBehaviour
         // StopCoroutine(PlayerController.instance.PlayerFire());
 
         MainCamera.instance.MoveCamera(2); //카메라 이동
-        PlayerController.instance.transform.position = Vector3.zero;
+        
 
         canvaJoystick.SetActive(false); //카메라(0) 번 화면의 캔버스(조이스틱) 비활성화
         canvaJoystick1.SetActive(false); //카메라(1) 번 화면의 캔버스(조이스틱) 비활성화
-
+       
         yield return new WaitForSeconds(5f); //5초대기
-        
+        PlayerController.instance.transform.position = Vector3.zero;
         canvaJoystick2.SetActive(true);  //카메라(2) 번 화면의 캔버스(조이스틱) 활성화
         canvaJoystick3.SetActive(false);
 
@@ -142,14 +145,15 @@ public class GameManager : MonoBehaviour
         // StopCoroutine(PlayerController.instance.PlayerFire());
 
         MainCamera.instance.MoveCamera(3); //카메라 이동
-        PlayerController.instance.transform.position = Vector3.zero;
+       
 
         canvaJoystick.SetActive(false); //카메라(0) 번 화면의 캔버스(조이스틱) 비활성화
         canvaJoystick1.SetActive(false); //카메라(1) 번 화면의 캔버스(조이스틱) 비활성화
         canvaJoystick2.SetActive(false);  //카메라(2) 번 화면의 캔버스(조이스틱) 활성화
 
-        yield return new WaitForSeconds(5f); //5초대기
         
+        yield return new WaitForSeconds(5f); //5초대기
+        PlayerController.instance.transform.position = Vector3.zero;
         canvaJoystick3.SetActive(true);
 
         // yield return new WaitForSeconds(2f); //2초 대기
@@ -175,16 +179,17 @@ public class GameManager : MonoBehaviour
         // StopCoroutine(PlayerController.instance.PlayerFire());
 
        // MainCamera.instance.MoveCamera(0); //카메라 이동
-        PlayerController.instance.transform.position = Vector3.zero;
+       
 
         canvaJoystick.SetActive(false); //카메라(0) 번 화면의 캔버스(조이스틱) 비활성화
         canvaJoystick1.SetActive(false); //카메라(1) 번 화면의 캔버스(조이스틱) 비활성화
         canvaJoystick2.SetActive(false);  //카메라(2) 번 화면의 캔버스(조이스틱) 활성화
-
+        
         yield return new WaitForSeconds(5f); //5초대기
-
+        PlayerController.instance.transform.position = Vector3.zero;
         canvaJoystick3.SetActive(false);
 
+        panelGameClear.SetActive(true);
         // yield return new WaitForSeconds(2f); //2초 대기
 
 

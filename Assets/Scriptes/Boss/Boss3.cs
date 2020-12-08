@@ -17,14 +17,14 @@ public class Boss3 : MonoBehaviour
 
     [SerializeField]
     private GameObject explosionPrefab; //보스 사망시 이펙트 프리팹(파티클시스템으로 한거)
-
+  
 
     private void Awake()
     {
         movement = GetComponent<Movement>();
         bossAttack = GetComponent<BossAttack>();
         bossHP = GetComponent<BossHP>();
-
+        
     }
     public void ChangeState(BossState3 newState)
     {
@@ -121,8 +121,8 @@ public class Boss3 : MonoBehaviour
         while (true)
         {
             //좌우 이동 중 양쪽 끝에 다달하게 되면 방향을 반대로 설정
-            if (transform.position.y <= -20f ||
-               transform.position.y >= 30f)
+            if (transform.position.z <= -40f ||
+               transform.position.z >= 40f)
             {
                 direction *= -1;  //방향변수에 -1을곱해서 반대방향으로 이동
                 movement.MoveTo(direction);
@@ -139,6 +139,8 @@ public class Boss3 : MonoBehaviour
 
         // StartCoroutine(GameManager.instance.BossClear()); <- 코루틴이라서 보스가 죽으면 서(오브젝트가 사라지기때문에) 코루틴이 끝김.
         GameManager.instance.CallBossClear3(); //일반함수를 불러와서 처리가 별도로 이루어짐
+
+        
 
         //보스오브젝트 삭제
         Destroy(gameObject);
