@@ -68,6 +68,25 @@ public class BossAttack : MonoBehaviour
                 //발사체가 생성되는 시작 각도 설정을 위한 변수
                 weightAngle += 3;
             }
+            if (GameManager.instance.canvaJoystick2.activeInHierarchy == true)
+            {
+                for (int i = 0; i < count; ++i)
+                {
+                    //발사체 생성
+                    GameObject clone = Instantiate(bossBulletPrefab, transform.position, Quaternion.identity);
+                    //발사체 이동 발향(각도)
+                    float angle = weightAngle + intervalAngle * i;
+                    //발사체 이동 방향(백터)
+                    float y = Mathf.Cos(angle * Mathf.PI / 180.0f); //Cos, 라디안 단위의 각도 표현을 위해 PI/180 을 곱함
+                    float z = Mathf.Sin(angle * Mathf.PI / 180.0f); //Sin, 라디안 단위의 각도 표현을 위해 PI/180 을 곱함
+                                                                    //발사체 이동 방향 설정
+                    clone.GetComponent<Movement>().MoveTo(new Vector3(0, y, z));
+                    // Debug.Log("보스패턴1");
+                }
+
+                //발사체가 생성되는 시작 각도 설정을 위한 변수
+                weightAngle += 3;
+            }
             //attackRate 시간만큼 대시
             yield return new WaitForSeconds(attackRate);
         }

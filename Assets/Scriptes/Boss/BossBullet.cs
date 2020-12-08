@@ -7,12 +7,16 @@ public class BossBullet : MonoBehaviour
     //private int damage = 1;
 
 
-    private BossHP  bossHP;
+    private BossHP bossHP;
     private BossHP bossHP1;
+    private BossHP bossHP2;
+    private BossHP bossHP3;
     void Start()
     {
         bossHP = GameObject.Find("Boss").GetComponent<BossHP>();
         bossHP1 = GameObject.Find("Boss1").GetComponent<BossHP>();
+        bossHP2 = GameObject.Find("Boss2").GetComponent<BossHP>();
+        bossHP3 = GameObject.Find("Boss3").GetComponent<BossHP>();
     }
 
     void Update()
@@ -24,12 +28,14 @@ public class BossBullet : MonoBehaviour
             transform.position.z >= 160f ||
             transform.position.y <= -80f ||
             transform.position.y >= 80f ||
-            bossHP.CurrentHP <= 0||
-            bossHP1.CurrentHP <=0)
+            bossHP.CurrentHP <= 0 ||
+            bossHP1.CurrentHP <= 0 ||
+            bossHP2.CurrentHP <= 0 ||
+            bossHP3.CurrentHP <= 0)
         {
             Destroy(gameObject);
         }
-       
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,6 +45,6 @@ public class BossBullet : MonoBehaviour
             //Destroy(other.gameObject);
             //Destroy(gameObject);
         }
-        
+
     }
 }

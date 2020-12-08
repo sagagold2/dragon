@@ -86,13 +86,19 @@ public class Boss : MonoBehaviour
         while (true)
         {
             //좌우 이동 중 양쪽 끝에 다달하게 되면 방향을 반대로 설정
-            if(transform.position.x <= -40f || 
+            if (transform.position.x <= -40f ||
                transform.position.x >= 40f)
             {
                 direction *= -1; //방향변수에 -1을곱해서 반대방향으로 이동
                 movement.MoveTo(direction);
             }
-
+            //if(transform.position.x <= -40f)
+            //{
+            //    if (direction *= -1 < -40f)
+            //    {
+            //        movement.MoveTo(direction);
+            //    }
+            //}
             //보스의 체력이 30%이하가 되면
             if (bossHP.CurrentHP <= bossHP.MaxHP * 0.3f) 
             {

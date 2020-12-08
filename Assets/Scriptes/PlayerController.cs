@@ -96,19 +96,19 @@ public class PlayerController : MonoBehaviour
             Rigid.velocity = (vec3 * MoveSpeed);
             // print(Controller.velocity);
             //화면 안에서 이동
-            if (transform.position.y < -12.2f) //하
+            if (transform.position.y < -37f) //하
             {
                 transform.position = new Vector3(transform.position.x, -37f, transform.position.z);
             }
-            if (transform.position.y > 55.2f) //상
+            if (transform.position.y > 42f) //상
             {
                 transform.position = new Vector3(transform.position.x, 42f, transform.position.z);
             }
-            if (transform.position.z < -67f) //좌(뒤쪽)
+            if (transform.position.z < -32f) //좌(뒤쪽)
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, -32f);
             }
-            if (transform.position.z > 73f) //우(앞쪽)
+            if (transform.position.z > 130f) //우(앞쪽)
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, 130f);
             }
@@ -128,21 +128,21 @@ public class PlayerController : MonoBehaviour
             //print(vec2);
             Rigid.velocity = (vec3 * MoveSpeed);
             // print(Controller.velocity);
-            if (transform.position.y < 1f) //하
+            if (transform.position.y < -23f) //하
             {
-                transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
+                transform.position = new Vector3(transform.position.x, -23f, transform.position.z);
             }
-            if (transform.position.y > 17f) //상
+            if (transform.position.y > 47f) //상
             {
-                transform.position = new Vector3(transform.position.x, 17f, transform.position.z);
+                transform.position = new Vector3(transform.position.x, 47f, transform.position.z);
             }
-            if (transform.position.z > 33f) //좌
+            if (transform.position.z > 123f) //좌
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, 33f);
+                transform.position = new Vector3(transform.position.x, transform.position.y, 123f);
             }
-            if (transform.position.z < -17f) //우
+            if (transform.position.z < -23f) //우
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, -17f);
+                transform.position = new Vector3(transform.position.x, transform.position.y, -23f);
             }
             Debug.Log("joystick 2 Active");
         }
@@ -160,21 +160,21 @@ public class PlayerController : MonoBehaviour
             //print(vec2);
             Rigid.velocity = (vec3 * MoveSpeed);
             // print(Controller.velocity);
-            if (transform.position.x < -7f) //좌
+            if (transform.position.x < -54f) //좌
             {
-                transform.position = new Vector3(-7f, transform.position.y, transform.position.z);
+                transform.position = new Vector3(-54f, transform.position.y, transform.position.z);
             }
-            if (transform.position.x > 7f) //우
+            if (transform.position.x > 54f) //우
             {
-                transform.position = new Vector3(7f, transform.position.y, transform.position.z);
+                transform.position = new Vector3(54f, transform.position.y, transform.position.z);
             }
-            if (transform.position.z < 3f) //하
+            if (transform.position.z < -18f) //하
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, 3f);
+                transform.position = new Vector3(transform.position.x, transform.position.y, -18f);
             }
-            if (transform.position.z > 30f) //상
+            if (transform.position.z > 205f) //상
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y, 30f);
+                transform.position = new Vector3(transform.position.x, transform.position.y, 205f);
             }
             Debug.Log("joystick 3 Active");
         }

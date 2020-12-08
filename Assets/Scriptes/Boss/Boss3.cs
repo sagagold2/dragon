@@ -2,15 +2,15 @@
 using UnityEngine;
 using System;
 
-public enum BossState1 { MoveToAppearPoint = 0, Phase01, Phase02, Phase03 }
+public enum BossState3 { MoveToAppearPoint = 0, Phase01, Phase02, Phase03 }
 
-public class Boss1 : MonoBehaviour
+public class Boss3 : MonoBehaviour
 {
     
 
     [SerializeField]
-    private float bossAppearPoint = 100f;
-    private BossState1 bossState1 = BossState1.MoveToAppearPoint;
+    private float bossAppearPoint = 183f;
+    private BossState3 bossState3 = BossState3.MoveToAppearPoint;
     private Movement movement;
     private BossAttack bossAttack;
     private BossHP bossHP; //보스 체력 기준으로 Phase 가 바뀌기 떄문에 보스체력 변수 선언
@@ -26,13 +26,13 @@ public class Boss1 : MonoBehaviour
         bossHP = GetComponent<BossHP>();
 
     }
-    public void ChangeState(BossState1 newState)
+    public void ChangeState(BossState3 newState)
     {
-        StopCoroutine(bossState1.ToString());
+        StopCoroutine(bossState3.ToString());
 
-        bossState1 = newState;
+        bossState3 = newState;
 
-        StartCoroutine(bossState1.ToString());
+        StartCoroutine(bossState3.ToString());
 
     }
 
@@ -50,7 +50,7 @@ public class Boss1 : MonoBehaviour
                 movement.MoveTo(Vector3.zero);
 
                 //Phase01 상태로 변경
-                ChangeState(BossState1.Phase01);
+                ChangeState(BossState3.Phase01);
 
             }
             yield return null;
@@ -68,7 +68,7 @@ public class Boss1 : MonoBehaviour
             {
                 bossAttack.StopFiring(AttackType.CircleFire); //원 방사형 공격 중지
 
-                ChangeState(BossState1.Phase02); //보스 페이즈 2로 변경
+                ChangeState(BossState3.Phase02); //보스 페이즈 2로 변경
                 Debug.Log("Boss Hp 70% 이하");
             }
             yield return null;
@@ -86,8 +86,8 @@ public class Boss1 : MonoBehaviour
         while (true)
         {
             //좌우 이동 중 양쪽 끝에 다달하게 되면 방향을 반대로 설정
-            if(transform.position.y <= -20f || 
-               transform.position.y >= 30f)
+            if(transform.position.y <= -45f || 
+               transform.position.y >= 45f)
             {
                 direction *= -1; //방향변수에 -1을곱해서 반대방향으로 이동
                 movement.MoveTo(direction);
@@ -100,7 +100,7 @@ public class Boss1 : MonoBehaviour
                 bossAttack.StopFiring(AttackType.SingleFireToCenterPosition);
 
                 //Phase03 으로 변경
-                ChangeState(BossState1.Phase03);
+                ChangeState(BossState3.Phase03);
                 Debug.Log("Boss Hp 30% 이하");
             }
             yield return null;
@@ -138,7 +138,7 @@ public class Boss1 : MonoBehaviour
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
         // StartCoroutine(GameManager.instance.BossClear()); <- 코루틴이라서 보스가 죽으면 서(오브젝트가 사라지기때문에) 코루틴이 끝김.
-        GameManager.instance.CallBossClear1(); //일반함수를 불러와서 처리가 별도로 이루어짐
+        GameManager.instance.CallBossClear3(); //일반함수를 불러와서 처리가 별도로 이루어짐
 
         //보스오브젝트 삭제
         Destroy(gameObject);
