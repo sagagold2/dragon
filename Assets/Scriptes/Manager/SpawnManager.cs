@@ -27,6 +27,9 @@ public class SpawnManager : MonoBehaviour
     private int maxEnemyCount = 100;
     [SerializeField]
     private GameObject textBossWarring;
+    public GameObject textBossWarring1;
+    public GameObject textBossWarring2;
+    public GameObject textBossWarring3;
 
     private void Awake()
     {
@@ -132,11 +135,11 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator SpawnBoss1() //2스테이지 보스소환
     {
-        textBossWarring.SetActive(true); //보스 등장시 텍스트 활성화
+        textBossWarring1.SetActive(true); //보스 등장시 텍스트 활성화
 
         yield return new WaitForSeconds(1.0f); //1초 대기 후 
 
-        textBossWarring.SetActive(false); //보스 등잘 텍스트 비활성화
+        textBossWarring1.SetActive(false); //보스 등잘 텍스트 비활성화
 
         bossEnemyPrefabs1.SetActive(true); //보스오브젝트 활성화
 
@@ -145,11 +148,11 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator SpawnBoss2() //3스테이지 보스소환
     {
-        textBossWarring.SetActive(true); //보스 등장시 텍스트 활성화
+        textBossWarring2.SetActive(true); //보스 등장시 텍스트 활성화
 
         yield return new WaitForSeconds(1.0f); //1초 대기 후 
 
-        textBossWarring.SetActive(false); //보스 등잘 텍스트 비활성화
+        textBossWarring2.SetActive(false); //보스 등잘 텍스트 비활성화
 
         bossEnemyPrefabs2.SetActive(true); //보스오브젝트 활성화
 
@@ -158,11 +161,11 @@ public class SpawnManager : MonoBehaviour
 
     private IEnumerator SpawnBoss3() //4스테이지 보스소환
     {
-        textBossWarring.SetActive(true); //보스 등장시 텍스트 활성화
+        textBossWarring3.SetActive(true); //보스 등장시 텍스트 활성화
 
         yield return new WaitForSeconds(1.0f); //1초 대기 후 
 
-        textBossWarring.SetActive(false); //보스 등잘 텍스트 비활성화
+        textBossWarring3.SetActive(false); //보스 등잘 텍스트 비활성화
 
         bossEnemyPrefabs3.SetActive(true); //보스오브젝트 활성화
 

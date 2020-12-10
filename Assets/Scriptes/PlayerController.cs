@@ -1,13 +1,12 @@
-﻿using UnityEngine;
-using System;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
 
     public Rigidbody Rigid;
-   
+
 
     public Joystick VirtualJoystick;
     public Joystick1 VirtualJoystick1;
@@ -22,26 +21,28 @@ public class PlayerController : MonoBehaviour
     float shootDelay = 0.4f;
     float shootTimer = 0;
 
-     void Awake()
+    void Awake()
     {
-       if(instance == null)
+        if (instance == null)
         {
             instance = this;
-        } 
+        }
     }
     void Start()
     {
         Rigid.drag = Drag;
+
+        StartCoroutine("PlayerFire");
+
         
-       StartCoroutine("PlayerFire");
     }
     void FixedUpdate()
     {
         CameraChangeforMove();
-        
-       
+
+
     }
-    
+
     // 플레이어 화면 전환에 따른 조이스틱 위치 변경/ 캐릭터 무브
     public void CameraChangeforMove() //화면이 돌아갈때마다 캔버스를 활성화 하는데 그떄 자식으로들어간 조이스틱들의 활성화에 따른 작동
     {
@@ -180,13 +181,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   
+
     public IEnumerator PlayerFire()
     {
-       
+
         while (true)
         {
-           
+
             if (shootTimer > shootDelay)
             {
                 GameObject bullet = Instantiate(prefabFireBall, transform.position, transform.rotation);
@@ -214,21 +215,63 @@ public class PlayerController : MonoBehaviour
 
     //}
 
-        //플레이어 사망
+    //플레이어 사망
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "EnemyBullet")
         {
-          //  Destroy(gameObject);
-          //  GameManager.instance.GameOver();
+              Destroy(gameObject);
+              GameManager.instance.GameOver();
         }
         else if (other.gameObject.tag == "Enemy")
         {
-           // Destroy(gameObject);
-           // GameManager.instance.GameOver();
+             Destroy(gameObject);
+             GameManager.instance.GameOver();
         }
- 
+        else if(other.gameObject.tag == "BossBullet")
+        {
+            Destroy(gameObject);
+            GameManager.instance.GameOver();
+        }
+
     }
 
-  
+    //무적버튼 좌측상단 버튼으로 무적(4번 클릭하면)
+    private int immortalcount = 4;
+    private int buttoncount = 0;
+    private int mortalcount = 8;
+    public GameObject textImmortal;
+    public void OnClickButtonImmortality()
+    {
+        
+        Debug.Log("a");
+        if(GameManager.instance.isPause == false)
+        {
+            Debug.Log("aa");
+            buttoncount++;
+            if(buttoncount == immortalcount) //버튼 4번 클릭하면 무적
+            {
+                Debug.Log("aaa");
+                gameObject.GetComponent<BoxCollider>().enabled = false;
+                textImmortal.SetActive(true);
+            }
+            else if(buttoncount == mortalcount) //버튼 추가로 4번클릭(총8번클릭하면 해재)
+            {
+                Debug.Log("aaa");
+                gameObject.GetComponent<BoxCollider>().enabled = true;
+                textImmortal.SetActive(false);
+            }
+        }
+        
+       
+    }
+   public void Immortal()
+    {
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+        Invoke("Mortal", 5f);
+    }
+    public void Mortal()
+    {
+        gameObject.GetComponent<BoxCollider>().enabled = true;
+    }
 }

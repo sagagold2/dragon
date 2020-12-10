@@ -141,13 +141,15 @@ public class Boss : MonoBehaviour
 
     public void Ondie() //보스 사망
     {
+        PlayerController.instance.Immortal();
+
         //보스 파괴 파티클 생성
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
         // StartCoroutine(GameManager.instance.BossClear()); <- 코루틴이라서 보스가 죽으면 서(오브젝트가 사라지기때문에) 코루틴이 끝김.
         GameManager.instance.CallBossClear(); //일반함수를 불어와서 처리가 별도로 이루어짐
 
-        Destroy(bossBullet);
+       // Destroy(bossBullet);
 
         //보스오브젝트 삭제
         Destroy(gameObject);

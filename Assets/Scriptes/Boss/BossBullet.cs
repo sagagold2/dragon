@@ -35,8 +35,8 @@ public class BossBullet : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            //Destroy(other.gameObject);
-            //Destroy(gameObject);
+          // Destroy(other.gameObject);
+           Destroy(gameObject);
         }
 
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
@@ -46,20 +47,21 @@ public class GameManager : MonoBehaviour
         if (isGameover)
         {
             //게임오버 패널 활성화
-           // panelGameover.SetActive(true);
+            panelGameover.SetActive(true);
 
-            //게임 일시정지
-            isPause = !isPause;
-            if (isPause)
-            {
-                Time.timeScale = 0f;  //시간흐름을 0초로(즉 일시정지)
-            }
-            else
-            {
-                Time.timeScale = 1f;  //시간흐름을 1초로(원래 시간대로// 0.5면 0.5배속으로 속도 조절이 가능)
-            }
-            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            ////게임 일시정지
+            //isPause = !isPause;
+            //if (isPause)
+            //{
+            //    Time.timeScale = 0f;  //시간흐름을 0초로(즉 일시정지)
+            //}
+            //else
+            //{
+            //    Time.timeScale = 1f;  //시간흐름을 1초로(원래 시간대로// 0.5면 0.5배속으로 속도 조절이 가능)
+            //}
+            //Time.fixedDeltaTime = 0.02f * Time.timeScale;
         }
+       
     }
 
 
@@ -197,5 +199,10 @@ public class GameManager : MonoBehaviour
 
        // StartCoroutine(SpawnManager.instance.SpawnEnemy());
         yield break; //위 싸이클을 한번 돌리고 멈추기
+    }
+
+    public void OnClickButtonGoMain()
+    {
+        SceneManager.LoadScene("TitleScene");
     }
 }
